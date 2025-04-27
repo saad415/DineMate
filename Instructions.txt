@@ -1,0 +1,16 @@
+
+Install dependencies
+npm install nativewind tailwindcss react-native-reanimated react-native-safe-area-context
+
+To creae
+
+Initialize Tailwind CSS: Use the Tailwind CLI to create the tailwind.config.js and the initial CSS file.
+npx tailwindcss init -p
+
+
+change files from tsx to jsx
+
+
+npx expo customize
+
+npm install @expo/vector-icons
