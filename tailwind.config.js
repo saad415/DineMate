@@ -1,3 +1,4 @@
+// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -5,10 +6,10 @@ module.exports = {
     "./app/**/*.{js,jsx,ts,tsx}",
     "./components/**/*.{js,jsx,ts,tsx}"
   ],
+  // This preset is required when using global.css + className in React Native:
   presets: [require("nativewind/preset")],
   theme: {
     extend: {},
   },
   plugins: [],
-}
-
+};
