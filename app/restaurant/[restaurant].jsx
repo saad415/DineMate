@@ -1,14 +1,14 @@
-// app/tabs/home.jsx
+// app/restaurant/[restaurant].jsx
 import { useLocalSearchParams } from "expo-router";
-import React, { useEffect } from "react";
+import React from "react";
 import { View, Text } from "react-native";
-// ✓ import the named export
 
 export default function Restaurant() {
-const { Restaurant} = useLocalSearchParams();
+  const { restaurant } = useLocalSearchParams(); // ✅ lowercase r
+
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>{Restaurant}</Text>
+      <Text>{restaurant}</Text> {/* ✅ show the restaurant name */}
     </View>
   );
 }
