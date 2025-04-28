@@ -1,7 +1,11 @@
 import { View, Text } from 'react-native'
-import React from 'react'
+import React,  { useEffect } from 'react'
+import { uploadData } from "../../config/bulkupload";
+
 
 const home = () => {
+  // call it once on mount
+
   return (
     <View>
       <Text>home</Text>

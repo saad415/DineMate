@@ -1,20 +1,18 @@
+// config/bulkupload.js
 import { collection, doc, setDoc } from "firebase/firestore";
-import { slots } from "../store/restaurants";
+import { restaurants } from "../store/restaurants";
 import { db } from "./firebaseConfig";
 
-const restaurantData = slots;
-
-const uploadData = async () => {
+// ✅ export as a named function
+export async function uploadData() {
   try {
-    for (let i = 0; i < restaurantData.length; i++) {
-      const restaurant = restaurantData[i];
-      const docRef = doc(collection(db, "slots"), `slot_${i + 1}`);
-      await setDoc(docRef, restaurant);
+    for (let i = 0; i < restaurants.length; i++) {
+      const slot = restaurants[i];
+      const docRef = doc(collection(db, "restaurants"), `restaurants_${i + 1}`);
+      await setDoc(docRef, slot);
     }
     console.log("Data uploaded");
   } catch (e) {
-    console.log("Error uploading data", e);
+    console.error("Error uploading data", e);
   }
-};
-
-export default uploadData;
+}
