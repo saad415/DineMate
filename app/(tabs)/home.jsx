@@ -18,7 +18,8 @@ import { BlurView } from "expo-blur";
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { collection, getDocs, query } from "firebase/firestore";
-import { db } from "../../config/firebaseConfig";
+import { db } from '../../config/firebaseConfig';
+import { uploadRestaurants } from '../../store/restaurants';
 
 import { Colors } from "../../constants/Colors";
 import logo from "../../assets/images/dinetimelogo.png";
@@ -47,13 +48,13 @@ export default function Home() {
   useEffect(() => {
     getRestaurants();
     temp();
+    //uploadRestaurants();
   }, []);
 
   // render each card
   const renderItem = ({ item }) => (
     <TouchableOpacity
-      onPress={() => router.push({ pathname: "/restaurant/[restaurant]", params: { restaurant: item.name } })
-    }
+      onPress={() => router.push({ pathname: "/restaurant/[restaurant]", params: { restaurant: item.id } })}
       style={styles.card}
     >
       <Image

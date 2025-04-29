@@ -1,5 +1,9 @@
+import { collection, getDocs, updateDoc, doc, addDoc, setDoc } from "firebase/firestore";
+import { db } from '../config/firebaseConfig';
+
 const restaurants = [
     {
+      id: "restaurant_1",
       name: "Sea Grill of Merrick Park",
       seats: 50,
       image: "https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg",
@@ -8,6 +12,7 @@ const restaurants = [
       closing: "23:00",
     },
     {
+      id: "restaurant_2",
       address: "123 Ocean Drive, Suite 101, Miami Beach, FL 33139",
       closing: "22:00",
       image:
@@ -17,6 +22,7 @@ const restaurants = [
       seats: 50,
     },
     {
+      id: "restaurant_3",
       address: "789 Sunset Blvd, Suite 202, Los Angeles, CA 90069",
       closing: "00:00",
       image: "https://images.pexels.com/photos/460537/pexels-photo-460537.jpeg",
@@ -25,6 +31,7 @@ const restaurants = [
       seats: 75,
     },
     {
+      id: "restaurant_4",
       address: "456 River Road, Suite 300, New York, NY 10001",
       closing: "23:30",
       image: "https://images.pexels.com/photos/687824/pexels-photo-687824.jpeg",
@@ -33,6 +40,7 @@ const restaurants = [
       seats: 65,
     },
     {
+      id: "restaurant_5",
       address: "321 Bay Street, Suite 400, San Francisco, CA 94133",
       closing: "22:30",
       image: "https://images.pexels.com/photos/1565982/pexels-photo-1565982.jpeg",
@@ -41,6 +49,7 @@ const restaurants = [
       seats: 80,
     },
     {
+      id: "restaurant_6",
       address: "555 Lake Avenue, Suite 120, Chicago, IL 60611",
       closing: "23:00",
       image: "https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg",
@@ -49,6 +58,7 @@ const restaurants = [
       seats: 70,
     },
     {
+      id: "restaurant_7",
       address: "789 Fifth Avenue, Suite 201, New York, NY 10022",
       closing: "21:30",
       image: "https://images.pexels.com/photos/704971/pexels-photo-704971.jpeg",
@@ -57,6 +67,7 @@ const restaurants = [
       seats: 60,
     },
     {
+      id: "restaurant_8",
       address: "1000 Broadway, Suite 500, Nashville, TN 37203",
       closing: "00:30",
       image:
@@ -66,6 +77,7 @@ const restaurants = [
       seats: 100,
     },
     {
+      id: "restaurant_9",
       address: "222 Elm Street, Suite 101, Dallas, TX 75201",
       closing: "22:00",
       image:
@@ -75,6 +87,7 @@ const restaurants = [
       seats: 90,
     },
     {
+      id: "restaurant_10",
       address: "789 Pine Street, Suite 204, Seattle, WA 98101",
       closing: "23:00",
       image: "https://images.pexels.com/photos/708587/pexels-photo-708587.jpeg",
@@ -83,6 +96,7 @@ const restaurants = [
       seats: 85,
     },
     {
+      id: "restaurant_11",
       address: "456 King Street, Suite 100, Charleston, SC 29403",
       closing: "22:00",
       image:
@@ -92,6 +106,7 @@ const restaurants = [
       seats: 55,
     },
     {
+      id: "restaurant_12",
       address: "789 Bourbon Street, Suite 300, New Orleans, LA 70116",
       closing: "01:00",
       image: "https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg",
@@ -100,6 +115,7 @@ const restaurants = [
       seats: 110,
     },
     {
+      id: "restaurant_13",
       address: "123 Main Street, Suite 150, Las Vegas, NV 89109",
       closing: "23:30",
       image: "https://images.pexels.com/photos/1058277/pexels-photo-1058277.jpeg",
@@ -307,4 +323,21 @@ const restaurants = [
     },
   ];
   
-  export { restaurants, carouselImages, slots };
+  const uploadRestaurants = async () => {
+    const restaurantsCollection = collection(db, "restaurants");
+
+    for (const restaurant of restaurants) {
+      try {
+        const docRef = doc(restaurantsCollection, restaurant.id);
+        await setDoc(docRef, restaurant);
+        console.log(`Uploaded: ${restaurant.name}`);
+      } catch (error) {
+        console.error(`Error uploading ${restaurant.name}:`, error);
+      }
+    }
+  };
+
+  // Call the function to upload the restaurants
+  uploadRestaurants();
+  
+  export { restaurants, carouselImages, slots, uploadRestaurants };
